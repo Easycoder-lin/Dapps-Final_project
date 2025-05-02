@@ -1,0 +1,493 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_oracle",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "insuranceID",
+						"type": "uint256"
+					}
+				],
+				"name": "CheckedAwaitData",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "insuranceID",
+						"type": "uint256"
+					}
+				],
+				"name": "CheckedNotReady",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "insuranceID",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "ClaimPaid",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "insuranceID",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "TA",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "enum FlightDelayInsurance.FlightStatus",
+						"name": "flightStatus",
+						"type": "uint8"
+					}
+				],
+				"name": "FlightInfoUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "insuranceID",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "customer",
+						"type": "address"
+					}
+				],
+				"name": "InsuranceCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "insuranceID",
+						"type": "uint256"
+					}
+				],
+				"name": "TerminatedNoClaim",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "insuranceID",
+						"type": "uint256"
+					}
+				],
+				"name": "TerminatedNoData",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "insuranceID",
+						"type": "uint256"
+					}
+				],
+				"name": "TerminatedOnTime",
+				"type": "event"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"inputs": [],
+				"name": "DEFAULT_CLAIM",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "DEFAULT_CT",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "DEFAULT_PREMIUM",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "insuranceID",
+						"type": "uint256"
+					}
+				],
+				"name": "checkAndClaim",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "flightCode",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "T1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "TP",
+						"type": "uint256"
+					}
+				],
+				"name": "createInsurance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "insuranceID",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "customerInsurances",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "customer",
+						"type": "address"
+					}
+				],
+				"name": "getInsurancesByCustomer",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "insurances",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "customer",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "flightCode",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "T1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "TP",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "TA",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "T",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "CT",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "premium",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "claimAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum FlightDelayInsurance.Status",
+						"name": "status",
+						"type": "uint8"
+					},
+					{
+						"internalType": "enum FlightDelayInsurance.ClaimStatus",
+						"name": "claimStatus",
+						"type": "uint8"
+					},
+					{
+						"internalType": "enum FlightDelayInsurance.FlightStatus",
+						"name": "flightStatus",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "oracle",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_oracle",
+						"type": "address"
+					}
+				],
+				"name": "setOracle",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "insuranceID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "TA",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum FlightDelayInsurance.FlightStatus",
+						"name": "flightStatus",
+						"type": "uint8"
+					}
+				],
+				"name": "updateFlightInfo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"createInsurance(string,uint256,uint256)": {
+					"params": {
+						"T1": "Scheduled departure (UNIX timestamp)",
+						"TP": "Scheduled arrival (UNIX timestamp)",
+						"flightCode": "Two letters + 1–4 digits, validated off-chain"
+					},
+					"returns": {
+						"insuranceID": "The ID assigned"
+					}
+				}
+			},
+			"stateVariables": {
+				"DEFAULT_CT": {
+					"details": "Base values (in smallest unit)"
+				},
+				"oracle": {
+					"details": "Address allowed to push flight updates (e.g. Chainlink oracle)"
+				},
+				"owner": {
+					"details": "Who deployed the contract"
+				}
+			},
+			"title": "Flight Delay Insurance",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"checkAndClaim(uint256)": {
+					"notice": "Check conditions and optionally pay out"
+				},
+				"createInsurance(string,uint256,uint256)": {
+					"notice": "Buy a new insurance"
+				},
+				"getInsurancesByCustomer(address)": {
+					"notice": "Get list of insurance IDs for a customer"
+				},
+				"setOracle(address)": {
+					"notice": "Change the oracle address"
+				},
+				"updateFlightInfo(uint256,uint256,uint8)": {
+					"notice": "Update actual arrival and flight status (via oracle)"
+				}
+			},
+			"notice": "Simple on-chain insurance contract: pays out if flight arrives more than CT seconds late",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			".deps/contract.sol": "FlightDelayInsurance"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		".deps/contract.sol": {
+			"keccak256": "0xd088bd2c0455c79922946defd3421f8212c40a8e2b0c363f2bc296d7f530ad31",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1be46e46a7b4db1ea3ce44a4d45c2a6a7c7ff6682e2a2652d4b975756731e7f5",
+				"dweb:/ipfs/QmWzrbihbaq2mgCfDHhmzU95twCKWvu5G6bhfgnoYPVgdK"
+			]
+		}
+	},
+	"version": 1
+}
