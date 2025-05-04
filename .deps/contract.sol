@@ -33,10 +33,10 @@ contract FlightDelayInsurance {
 
     /// @dev Base values (in smallest unit)
     uint256 public constant DEFAULT_CT = 4 hours;      // 14400 seconds
-    uint256 public constant DEFAULT_PREMIUM = 300;     // e.g. 300 cents
-    uint256 public constant DEFAULT_CLAIM = 6000;      // e.g. 6000 cents
+    uint256 public constant DEFAULT_PREMIUM = 3e17 wei;     // e.g. 300 cents
+    uint256 public constant DEFAULT_CLAIM = 6e18 wei;      // e.g. 6000 cents
 
-    uint256 private nextInsuranceId = 1;
+    uint256 private nextInsuranceId = 0;
     mapping(uint256 => Insurance) public insurances;
     mapping(address => uint256[]) public customerInsurances;
 
@@ -128,7 +128,7 @@ contract FlightDelayInsurance {
     }
 
     /// @notice Check conditions and optionally pay out
-    function checkAndClaim(uint256 insuranceID) external {
+    function checkAndClaim(uint256 insuranceID) external payable onlyOwner{
         Insurance storage ins = insurances[insuranceID];
         require(ins.status == Status.Active, "Insurance not active");
 

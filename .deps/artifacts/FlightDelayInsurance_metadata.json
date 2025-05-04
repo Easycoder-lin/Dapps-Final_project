@@ -197,7 +197,7 @@
 				],
 				"name": "checkAndClaim",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -488,11 +488,11 @@
 	},
 	"sources": {
 		".deps/contract.sol": {
-			"keccak256": "0xd54457c5f0e2ef3dbd211f328d5fc51f854be68bd96a06945049d8f8763a26f8",
+			"keccak256": "0x1686c0f3b34c9c36d982e29a1c03a510ac37b366411488fa89ef31e6288bca9b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://caaa4269702347f7d8d44c8189edf374f838abcf698e34b32d2d6354ab48a459",
-				"dweb:/ipfs/QmNoCndypPYqvaq4e8t5ZXNM1RR4mcnJheF1c3xcQgUo8Y"
+				"bzz-raw://d81873fa1584843cc9d8e3f655299b60ac363af9bba276c9a57c467ef044da66",
+				"dweb:/ipfs/QmS9A3rwXC9E7XMkh7mVLNNGwW1VPkzMoPKHP5fB4CtBGX"
 			]
 		}
 	},
