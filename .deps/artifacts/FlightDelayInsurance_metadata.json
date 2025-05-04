@@ -409,6 +409,13 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
 				"stateMutability": "payable",
 				"type": "receive"
 			}
@@ -481,11 +488,11 @@
 	},
 	"sources": {
 		".deps/contract.sol": {
-			"keccak256": "0xd088bd2c0455c79922946defd3421f8212c40a8e2b0c363f2bc296d7f530ad31",
+			"keccak256": "0xd54457c5f0e2ef3dbd211f328d5fc51f854be68bd96a06945049d8f8763a26f8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1be46e46a7b4db1ea3ce44a4d45c2a6a7c7ff6682e2a2652d4b975756731e7f5",
-				"dweb:/ipfs/QmWzrbihbaq2mgCfDHhmzU95twCKWvu5G6bhfgnoYPVgdK"
+				"bzz-raw://caaa4269702347f7d8d44c8189edf374f838abcf698e34b32d2d6354ab48a459",
+				"dweb:/ipfs/QmNoCndypPYqvaq4e8t5ZXNM1RR4mcnJheF1c3xcQgUo8Y"
 			]
 		}
 	},

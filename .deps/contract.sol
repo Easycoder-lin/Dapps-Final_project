@@ -192,4 +192,10 @@ contract FlightDelayInsurance {
     /// @notice Fallback to receive premiums
     receive() external payable {}
     fallback() external payable {}
+
+    // withdraw smart contract balance
+    function withdraw() external payable onlyOwner{
+        (bool withdrawSuccess,) = payable(msg.sender).call{value: address(this).balance}("");
+        require(withdrawSuccess, "Withdraw Failed !");
+    }
 }
