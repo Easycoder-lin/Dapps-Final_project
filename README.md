@@ -1,9 +1,7 @@
 # DDAO-Final-Project
 
 
-#✈️ Flight Delay Insurance Smart Contract
-
-## Overview
+## Flight Delay Insurance Smart Contract Overview
 
 This smart contract implements a **simple decentralized flight delay insurance** system on Ethereum. Users can:
 
@@ -11,6 +9,8 @@ This smart contract implements a **simple decentralized flight delay insurance**
 * Receive a payout if the flight arrives significantly late.
 * Have data updated by a trusted oracle (e.g. Chainlink).
 * Be refunded based on on-chain evaluation of flight status.
+
+[Remix demo](https://docs.google.com/presentation/d/17anx4L4A_kWIidtTais4Rj12T75dhY_wYESPzIpbIWo/edit?usp=sharing)
 
 ---
 
@@ -107,3 +107,4 @@ enum FlightStatus { Normal, Canceled, Other }
 ```
 
 ---
+
