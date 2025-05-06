@@ -33,8 +33,8 @@ contract FlightDelayInsurance {
 
     /// @dev Base values (in smallest unit)
     uint256 public constant DEFAULT_CT = 4 hours;      // 14400 seconds
-    uint256 public constant DEFAULT_PREMIUM = 3e17 wei;     // e.g. 300 cents
-    uint256 public constant DEFAULT_CLAIM = 6e18 wei;      // e.g. 6000 cents
+    uint256 public constant DEFAULT_PREMIUM = 3e17 wei;     // e.g. 0.3 ether
+    uint256 public constant DEFAULT_CLAIM = 6e18 wei;      // e.g. 6 ether
 
     uint256 private nextInsuranceId = 0;
     mapping(uint256 => Insurance) public insurances;
