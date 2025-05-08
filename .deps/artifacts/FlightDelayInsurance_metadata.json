@@ -113,6 +113,25 @@
 						"internalType": "uint256",
 						"name": "insuranceID",
 						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "flightCode",
+						"type": "string"
+					}
+				],
+				"name": "NeedFlightData",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "insuranceID",
+						"type": "uint256"
 					}
 				],
 				"name": "TerminatedNoClaim",
@@ -147,6 +166,19 @@
 			{
 				"stateMutability": "payable",
 				"type": "fallback"
+			},
+			{
+				"inputs": [],
+				"name": "AUTOMATION_INTERVAL",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
 				"inputs": [],
@@ -197,7 +229,31 @@
 				],
 				"name": "checkAndClaim",
 				"outputs": [],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"name": "checkUpkeep",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "upkeepNeeded",
+						"type": "bool"
+					},
+					{
+						"internalType": "bytes",
+						"name": "performData",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -348,6 +404,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "lastAutomationTime",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "oracle",
 				"outputs": [
 					{
@@ -370,6 +439,19 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"name": "performUpkeep",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -412,7 +494,7 @@
 				"inputs": [],
 				"name": "withdraw",
 				"outputs": [],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -422,58 +504,24 @@
 		],
 		"devdoc": {
 			"kind": "dev",
-			"methods": {
-				"createInsurance(string,uint256,uint256)": {
-					"params": {
-						"T1": "Scheduled departure (UNIX timestamp)",
-						"TP": "Scheduled arrival (UNIX timestamp)",
-						"flightCode": "Two letters + 1–4 digits, validated off-chain"
-					},
-					"returns": {
-						"insuranceID": "The ID assigned"
-					}
-				}
-			},
-			"stateVariables": {
-				"DEFAULT_CT": {
-					"details": "Base values (in smallest unit)"
-				},
-				"oracle": {
-					"details": "Address allowed to push flight updates (e.g. Chainlink oracle)"
-				},
-				"owner": {
-					"details": "Who deployed the contract"
-				}
-			},
+			"methods": {},
 			"title": "Flight Delay Insurance",
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
 			"methods": {
-				"checkAndClaim(uint256)": {
-					"notice": "Check conditions and optionally pay out"
-				},
-				"createInsurance(string,uint256,uint256)": {
-					"notice": "Buy a new insurance"
-				},
-				"getInsurancesByCustomer(address)": {
-					"notice": "Get list of insurance IDs for a customer"
-				},
-				"setOracle(address)": {
-					"notice": "Change the oracle address"
-				},
 				"updateFlightInfo(uint256,uint256,uint8)": {
-					"notice": "Update actual arrival and flight status (via oracle)"
+					"notice": "Oracle (or owner while testing) pushes real flight data"
 				}
 			},
-			"notice": "Simple on-chain insurance contract: pays out if flight arrives more than CT seconds late",
+			"notice": "Pays out if the flight arrives more than CT seconds late.         Chainlink Automation wakes the contract; an off‑chain listener reacts         to NeedFlightData events, calls Amadeus, then pushes the data back         via updateFlightInfo().",
 			"version": 1
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			".deps/contract.sol": "FlightDelayInsurance"
+			".deps/auto_contract.sol": "FlightDelayInsurance"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -487,12 +535,28 @@
 		"remappings": []
 	},
 	"sources": {
-		".deps/contract.sol": {
-			"keccak256": "0xf80761301bdf674f05087c590f65c0ab3bb08b1f5ae9b26e22653a001ef28a15",
+		".deps/auto_contract.sol": {
+			"keccak256": "0xd83db23e61cb6b9401d30356db11fc9eabe2c1cfc111b36bc6a768933fab48e7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c61de1c9787d54db154a77aaf12798c54c0571e84c854ee6d1303c39c51111a0",
-				"dweb:/ipfs/QmTvS1u44B5nEo4h8ANSMoFWStFbGBJS8S4wKB68h6GcpQ"
+				"bzz-raw://ea0f5f6008721b3f216559fb06f2fe4568ea440741d41fab83a09fe945cee026",
+				"dweb:/ipfs/Qmc8KNiDZTMxaQCrNvUWZcwm46aJF39k5r4r9HYu7XDh5J"
+			]
+		},
+		"@chainlink/contracts/src/v0.8/interfaces/AutomationCompatibleInterface.sol": {
+			"keccak256": "0x67076747c6f66d8d43472a56e72879c350056bff82e069addaf9064922863340",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b738dba680a6fbc4afc85819743f13f5b7f4790ec8634c9894e1160327b11b6e",
+				"dweb:/ipfs/Qmbv3euvQppeBm2g61khcJSRMZWi78xUWzbnjKAvDBnka4"
+			]
+		},
+		"@chainlink/contracts/src/v0.8/interfaces/KeeperCompatibleInterface.sol": {
+			"keccak256": "0xac76a31c20c6d66196247376d113a0f19229569ab8c123989649d50be3333e0a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5400532a5132536ba3d1172604291298f1595f15d7a7f66c95bf89a5823b80be",
+				"dweb:/ipfs/QmTvDMmt73kZEGjD9WVgpaN8xLsgGpoXmr2yVUQoQuv8GW"
 			]
 		}
 	},
