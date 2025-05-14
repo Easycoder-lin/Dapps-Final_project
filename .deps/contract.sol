@@ -132,8 +132,7 @@ contract FlightDelayInsurance {
         Insurance storage ins = insurances[insuranceID];
         require(ins.status == Status.Active, "Insurance not active");
 
-            emit CheckedNotReady(insuranceID);
-        // If still before claim window: (註解掉測試較方便 不然一定要等飛機抵達
+        // If still before claim window:
         // if (block.timestamp < ins.TP + ins.CT) {
         //     ins.T = block.timestamp;
         //     emit CheckedNotReady(insuranceID);
