@@ -33,8 +33,8 @@ contract FlightDelayInsurance {
 
     /// @dev Base values (in smallest unit)
     uint256 public constant DEFAULT_CT = 4 hours;      // 14400 seconds
-    uint256 public constant DEFAULT_PREMIUM = 3e17 wei;     // e.g. 0.3 ether
-    uint256 public constant DEFAULT_CLAIM = 6e18 wei;      // e.g. 6 ether
+    uint256 public constant DEFAULT_PREMIUM = 3e16 wei;     // e.g. 0.3 ether 先改小一點0.03測試 
+    uint256 public constant DEFAULT_CLAIM = 6e16 wei;      // e.g. 6 ether 先改小一點0.06測試
 
     uint256 private nextInsuranceId = 0;
     mapping(uint256 => Insurance) public insurances;
@@ -132,12 +132,13 @@ contract FlightDelayInsurance {
         Insurance storage ins = insurances[insuranceID];
         require(ins.status == Status.Active, "Insurance not active");
 
-        // If still before claim window:
-        if (block.timestamp < ins.TP + ins.CT) {
-            ins.T = block.timestamp;
             emit CheckedNotReady(insuranceID);
-            return;
-        }
+        // If still before claim window: (註解掉測試較方便 不然一定要等飛機抵達
+        // if (block.timestamp < ins.TP + ins.CT) {
+        //     ins.T = block.timestamp;
+        //     emit CheckedNotReady(insuranceID);
+        //     return;
+        // }
 
         // Flight cancelled:
         if (ins.flightStatus == FlightStatus.Canceled) {
