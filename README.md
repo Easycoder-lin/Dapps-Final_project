@@ -64,7 +64,7 @@ struct Insurance {
 
 ### 📡 `updateFlightInfo(uint256 insuranceID, uint256 TA, FlightStatus flightStatus)`
 
-* Called by oracle or owner to update actual arrival time and status.
+* Called by owner to update actual arrival time and status.
 
 ### 🧾 `checkAndClaim(uint256 insuranceID)`
 
@@ -89,7 +89,7 @@ struct Insurance {
 1. User buys insurance:
 
    * `createInsurance("CI123", T1, TP)` with 0.3 ETH.
-2. Oracle updates flight info:
+2. Updates flight info:
 
    * `updateFlightInfo(ID, TA, FlightStatus.Normal)`.
 3. Owner checks for payout eligibility:
