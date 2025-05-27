@@ -7,10 +7,9 @@ This smart contract implements a **simple decentralized flight delay insurance**
 
 * Purchase insurance for a specific flight.
 * Receive a payout if the flight arrives significantly late.
-* Have data updated by a trusted oracle (e.g. Chainlink).
 * Be refunded based on on-chain evaluation of flight status.
 
-[Remix demo](https://docs.google.com/presentation/d/17anx4L4A_kWIidtTais4Rj12T75dhY_wYESPzIpbIWo/edit?usp=sharing)
+<!-- [Remix demo](https://docs.google.com/presentation/d/17anx4L4A_kWIidtTais4Rj12T75dhY_wYESPzIpbIWo/edit?usp=sharing) -->
 
 ---
 
@@ -19,15 +18,16 @@ This smart contract implements a **simple decentralized flight delay insurance**
 | Role     | Address                   | Functionality                                                     |
 | -------- | ------------------------- | ----------------------------------------------------------------- |
 | `owner`  | Deployer                  | Can set the oracle, withdraw funds, and trigger `checkAndClaim()` |
-| `oracle` | Chainlink node or backend | Updates flight arrival info and status                            |
+| `customer` | metamask address        | Can create insurance                                              |
+<!-- | `oracle` | Chainlink node or backend | Updates flight arrival info and status                            | -->
 
 ---
 
 ## 📄 Contract Variables
 
 * `DEFAULT_CT`: Delay threshold for claim (4 hours).
-* `DEFAULT_PREMIUM`: Fee paid by customer (0.3 ETH in wei).
-* `DEFAULT_CLAIM`: Payout for valid claims (6 ETH in wei).
+* `DEFAULT_PREMIUM`: Fee paid by customer (0.03 ETH in wei).
+* `DEFAULT_CLAIM`: Payout for valid claims (0.06 ETH in wei).
 * `insurances`: Mapping of insurance ID to policy details.
 * `customerInsurances`: Customer address to their insurance IDs.
 
