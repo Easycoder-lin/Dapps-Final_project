@@ -18,7 +18,7 @@ This smart contract implements a **simple decentralized flight delay insurance**
 | Role     | Address                   | Functionality                                                     |
 | -------- | ------------------------- | ----------------------------------------------------------------- |
 | `owner`  | Deployer                  | Can set the oracle, withdraw funds, and trigger `checkAndClaim()` |
-| `customer` | metamask address        | Can create insurance                                              |
+| `customer` | metamask address        | Can create multiple insurances                                              |
 <!-- | `oracle` | Chainlink node or backend | Updates flight arrival info and status                            | -->
 
 ---
